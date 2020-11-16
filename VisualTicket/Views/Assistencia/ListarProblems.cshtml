@@ -1,0 +1,53 @@
+﻿@model List<Infra.ViewModel.ProblemViewModel>
+
+@{
+    ViewBag.Title = "ListarProblems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Tabela de Problema</h3>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Url.Action("CriarProblem","Assistencia")"><i class="fa fa-plus"></i> Novo problema</a>
+        </div>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Causa</th>
+            <th scope="col">Impactos</th>
+            <th scope="col">Funcionario</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count != 0)
+        {
+            foreach (var problems in Model)
+            {
+                <tr>
+                    <td><a href="@Url.Action("EditarProblem","Assistencia", new { id = problems.Id })">@Html.DisplayFor(modelItem => problems.Id)</a></td>
+                    <td>@Html.DisplayFor(modelItem => problems.Titulo)</td>
+                    <td>@Html.DisplayFor(modelItem => problems.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => problems.Causa)</td>
+                    <td>@Html.DisplayFor(modelItem => problems.Impactos)</td>
+                    <td>@Html.DisplayFor(modelItem => problems.Funcionario.Nome)</td>
+                    <td><a href="@Url.Action("EditarProblem","Assistencia", new { id = problems.Id })" title="Editar problems"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="8">Não possui informação.</td></tr>
+        }
+
+    </tbody>
+</table>
+

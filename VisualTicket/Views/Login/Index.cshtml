@@ -1,0 +1,66 @@
+﻿@model Infra.ViewModel.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link rel="icon" type="image/png" sizes="96x96" href="~/Content/Images/favicon.png">*@
+    <title>VisualTicket | Login </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-color: rgb(193, 229, 224);">
+    <div id="wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="auth-box login">
+                    <div class="content">
+                        <div class="header">
+                            <div class="logo text-center"><img src="~/Content/img/logo.png" alt="VisualTicket"></div>
+                            <p class="lead text-center">Faça login na sua conta</p>
+                        </div>
+
+                        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-auth-small" }))
+                        {
+                            // cria a tag do formulário
+                            @Html.AntiForgeryToken() // previne o ataque CSRF
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            if (@ViewBag.Message != null)
+                            {
+                                <div style="border:1px solid red">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <div class="form-group login-form">
+                                @Html.LabelFor(model => model.Username, new { @class = "control-label sr-only" })
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control tb", @id = "signin-username", @placeholder = "Username" })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group login-form">
+                                @Html.LabelFor(model => model.Senha, new { @class = "control-label sr-only" })
+                                @Html.PasswordFor(model => model.Senha, new { @class = "form-control tb", @id = "signin-password", @placeholder = "Senha" })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="btnlogin btn btn-primary btn-lg btn-block">LOGIN</button>
+                            <div class="bottom">
+                                <span class="helper-text"><i class="fa fa-lock"></i> <a href="@Url.Action("EsqueciSenha","Login")">Esqueceu a senha?</a></span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

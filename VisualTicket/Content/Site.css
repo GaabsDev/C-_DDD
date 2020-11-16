@@ -1,0 +1,77 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    background-color: rgb(193, 229, 224) !important;
+    border-bottom-color: rgb(193, 229, 224) !important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: black !important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: black !important;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.btnlogin {
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+}
+.bottom {
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.auth-box {
+    border-radius: 5px;
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgb(193, 229, 224);
+}
+
+.auth-box .content {
+    width: 99%;
+    padding: 30px;
+}
+
+#menu-assets:hover #itens-assets {
+    display: block;
+}
+
+.tb {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.logout {
+    float: right;
+}
+
+.bg-img {
+    background-image: url('img/pngtree-blue-nebula-line-tech-background-image_179953.jpg');
+}

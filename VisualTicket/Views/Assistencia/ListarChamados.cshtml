@@ -1,0 +1,53 @@
+﻿@model List<Infra.ViewModel.ChamadoViewModel>
+
+@{
+    ViewBag.Title = "Listar Chamados";
+}
+
+<div>
+    <h3>Tabela de Chamados</h3>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Url.Action("CriarChamado","Assistencia")"><i class="fa fa-plus"></i> Novo Chamado</a>
+        </div>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Prioridade</th>
+            <th scope="col">Severidade</th>
+            <th scope="col">Sistema</th>
+            <th scope="col">Usuário</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count != 0)
+        {
+            foreach (var chamado in Model)
+            {
+                <tr>
+                    <td><a href="@Url.Action("EditarChamado","Assistencia", new { id = chamado.Id })">@Html.DisplayFor(modelItem => chamado.Id)</a></td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Titulo)</td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Prioridade.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Severidade.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Sistema.Nome)</td>
+                    <td>@Html.DisplayFor(modelItem => chamado.Funcionario.Nome)</td>
+                    <td><a href="@Url.Action("EditarChamado","Assistencia", new { id = chamado.Id })" title="Editar Chamado"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="8">Não possui informação.</td></tr>
+        }
+
+    </tbody>
+</table>

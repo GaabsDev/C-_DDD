@@ -1,0 +1,51 @@
+﻿@model List<Infra.ViewModel.FuncionarioViewModel>
+
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<div class="jumbotron">
+    <h2>Usuários</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Gerente</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Perfil Acesso</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count != 0)
+                {
+                    foreach (var func in Model)
+                    {
+                        <tr>
+                            <td><a href="@Url.Action("EditarFuncionario","Administracao", new { id = func.Id })">@Html.DisplayFor(modelItem => func.Id)</a></td>
+                            <td>@Html.DisplayFor(modelItem => func.Nome)</td>
+                            <td>@Html.DisplayFor(modelItem => func.Username)</td>
+                            <td>@Html.DisplayFor(modelItem => func.Departamento.Descricao)</td>
+                            <td>@Html.DisplayFor(modelItem => func.Departamento.Gerente)</td>
+                            <td>@Html.DisplayFor(modelItem => func.Cargo.Descricao)</td>
+                            <td>@Html.DisplayFor(modelItem => func.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => func.PerfilAcesso)</td>
+                            <td><a href="@Url.Action("EditarFuncionario","Administracao", new { id = func.Id })" title="Editar Funcionario"><i class="fa fa-edit"></i></a></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="8">Não possui funcionários cadastrados.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

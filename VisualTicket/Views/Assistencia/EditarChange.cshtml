@@ -1,0 +1,118 @@
+﻿@model Infra.ViewModel.ChangeViewModel
+@{
+    ViewBag.Title = "EditarChange";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h3>Editar Change</h3>
+</div>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm("EditarChange", "Assistencia", FormMethod.Post, new { @class = "form-auth-small" }))
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Email, new { @readonly = true, @class = "form-control", @type = "email", @id = "email", @placeholder = "Email", @Value = Model.Email })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Titulo, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @id = "tituloChamado", @placeholder = "Titulo Chamado", @type = "text", @Value = Model.Titulo })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Funcionario.Username, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Funcionario.Username, new { @readonly = true, @class = "form-control", @type = "text", @placeholder = "Username Solicitante", @id = "username", @Value = Model.Username })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.LocalMudanca, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.LocalMudanca, new { @class = "form-control", @type = "text", @placeholder = "Causa", @id = "causa", @Value = Model.LocalMudanca })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prioridade, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Prioridades, new SelectList(Model.Prioridades, "Id", "Descricao"), Model.Prioridades.FirstOrDefault(x => x.Id == Model.PrioridadeId).Descricao, new { @class = "form-control", @data_toggle = "tooltip", @data_placement = "top", @title = "Urgencia", @Value = Model.PrioridadeId })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PodeTerRollback, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.PodeTerRollback, new { @class = "form-control", @type = "checkbox", @placeholder = "Rollback", @id = "rollbacl", @Value = Model.PodeTerRollback })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group input-group date" data-provide="datepicker">
+                            <div class='input-group date' id='datetimepicker5'>
+                                @Html.TextBoxFor(model => model.DiaInicio, new { @class = "form-control", @type = "text", @Value = Model.DiaInicio })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group input-group date" data-provide="datepicker">
+                            <div class='input-group date' id='datetimepicker6'>
+                                @Html.TextBoxFor(model => model.DiaFim, new { @class = "form-control", @type = "text", @Value = Model.DiaFim })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AreasImpactadas, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.AreasImpactadas, new { @class = "form-control", @id = "impactos", @type = "text", @placeholder = "Locais que estão sendo impactados", @rows = "3", @Value = Model.AreasImpactadas })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @id = "descricao", @type = "text", @placeholder = "Descrição Problema", @rows = "3", @Value = Model.Descricao })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Editar Change</button>
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker5').datetimepicker({
+            locale: 'pt-br'
+        });
+        $('#datetimepicker6').datetimepicker({
+            locale: 'pt-br'
+        });
+    });
+</script>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="jumbotron">
+    <h2>Bem-Vindo, @Session["NomeUsuario"]</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.Partial("_ListaChamados")
+    </div>
+
+</div>
+@Scripts.Render("~/bundles/jquery")

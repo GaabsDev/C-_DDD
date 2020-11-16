@@ -1,0 +1,80 @@
+﻿@model Infra.ViewModel.ChamadoViewModel
+@{
+    ViewBag.Title = "Editar Chamado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Chamado</h2>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm("EditarChamado", "Assistencia", FormMethod.Post, new { @class = "form-auth-small" }))
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Email, new { @readonly = true, @class = "form-control", @type = "email", @id = "email", @placeholder = "Email", @Value = Model.Email })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Titulo, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @id = "tituloChamado", @placeholder = "Titulo Chamado", @type = "text", @Value = Model.Titulo })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Funcionario.Username, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Funcionario.Username, new { @readonly = true, @class = "form-control", @type = "text", @placeholder = "Username Solicitante", @id = "username", @Value = Model.Username })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Sistema, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Sistemas, new SelectList(Model.Sistemas, "Id", "Nome"), @Model.Sistemas.FirstOrDefault(x => x.Id == Model.SistemaId).Nome, new { @class = "form-control", @id = "sistemaId", @Value = Model.SistemaId })
+                            @Html.HiddenFor(m => m.SistemaId, new { @id = "sId" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prioridade, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Prioridades, new SelectList(Model.Prioridades, "Id", "Descricao"), Model.Prioridades.FirstOrDefault(x => x.Id == Model.PrioridadeId).Descricao, new { @class = "form-control", @data_toggle = "tooltip", @data_placement = "top", @title = "Urgencia", @Value = Model.PrioridadeId })
+                            @Html.HiddenFor(m => m.PrioridadeId, new { @id = "pId" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Severidade, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Severidades, new SelectList(Model.Severidades, "Id", "Descricao"), Model.Severidades.FirstOrDefault(x => x.Id == Model.SeveridadeId).Descricao, new { @class = "form-control", @data_toggle = "tooltip", @data_placement = "top", @title = "Impacto", @Value = Model.SeveridadeId })
+                            @Html.HiddenFor(m => m.SeveridadeId, new { @id = "sevId" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @id = "descricao", @type = "text", @placeholder = "Descrição Chamado", @rows = "3", @Value = Model.Descricao })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Alterar Chamado</button>
+
+        }
+    </div>
+</div>
+
+

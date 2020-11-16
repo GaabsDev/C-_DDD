@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - VisualTicket</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" type="text/css" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @*<a href="@Url.Action("Index", "Home")" title="VisualTicket" class="navbar-brand">
+                        <img alt="VisualTicket" style="width: 60px; height: 60px; padding:unset; margin-bottom:20px" src="@Url.Content("~/Content/img/logo.png")">
+                    </a>*@
+                @Html.ActionLink("VisualTicket", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    @*<li class="nav-item dropdown" id="menu-assets">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Assets <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" id="itens-assets" aria-labelledby="navbarDropdown">
+                                <li>@Html.ActionLink("Computadores", "Computadores", "Assets")</li>
+                                <li>@Html.ActionLink("Monitores", "Monitores", "Assets")</li>
+                                <li>@Html.ActionLink("Softwares", "Softwares", "Assets")</li>
+                                <li>@Html.ActionLink("Rede", "Rede", "Assets")</li>
+                                <li>@Html.ActionLink("Dispositivos", "Dispositivos", "Assets")</li>
+                                <li>@Html.ActionLink("Impressoras", "Rede", "Assets")</li>
+                                <li>@Html.ActionLink("Telefone", "Telefone", "Assets")</li>
+                            </ul>
+                        </li>*@
+                    <li class="nav-item dropdown" id="menu-assets">
+                        <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Assistencia")" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Assistencia <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" id="itens-assets" aria-labelledby="navbarDropdown">
+                            <li>@Html.ActionLink("Chamados", "ListarChamados", "Assistencia")</li>
+                            <li>@Html.ActionLink("Problemas", "ListarProblems", "Assistencia")</li>
+                            <li>@Html.ActionLink("Changes", "ListarChanges", "Assistencia")</li>
+                        </ul>
+                    </li>
+                    @*<li>@Html.ActionLink("Gerencia", "Index", "Gerencia")</li>  @*licencas*@
+                    @if (Session["Perfil"].ToString() == "ADM")
+                    {
+                        <li class="nav-item dropdown" id="menu-assets">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administracao <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" id="itens-assets" aria-labelledby="navbarDropdown">
+                                <li>@Html.ActionLink("Usuários", "Usuario", "Administracao")</li>
+                                @*<li>@Html.ActionLink("Perfis", "Perfis", "Administracao")</li>*@
+                            </ul>
+                        </li>
+                    }
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li class="logout">@Html.ActionLink("Logout", "Logout", "Login")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - VisualTicket</p>
+        </footer>
+    </div>
+
+</body>
+</html>

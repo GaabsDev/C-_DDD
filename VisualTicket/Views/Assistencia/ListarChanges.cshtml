@@ -1,0 +1,62 @@
+﻿@model List<Infra.ViewModel.ChangeViewModel>
+
+@{
+    ViewBag.Title = "ListarChanges";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h3>Tabela de Changes</h3>
+</div>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="@Url.Action("CriarChange","Assistencia")"><i class="fa fa-plus"></i> Nova Change</a>
+        </div>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Local Mudança</th>
+            <th scope="col">Áreas Impactadas</th>
+            <th scope="col">Data Inicio</th>
+            <th scope="col">Data Fim</th>
+            <th scope="col">Prioridade</th>
+            <th scope="col">Funcionario</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count != 0)
+        {
+            foreach (var changes in Model)
+            {
+                <tr>
+                    <td><a href="@Url.Action("EditarChange","Assistencia", new { id = changes.Id })">@Html.DisplayFor(modelItem => changes.Id)</a></td>
+                    <td>@Html.DisplayFor(modelItem => changes.Titulo)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.LocalMudanca)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.AreasImpactadas)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.DiaInicio)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.DiaFim)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.Prioridade.Descricao)</td>
+                    <td>@Html.DisplayFor(modelItem => changes.Funcionario.Nome)</td>
+                    <td><a href="@Url.Action("EditarChange","Assistencia", new { id = changes.Id })" title="Editar changes"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="8">Não possui informação.</td></tr>
+        }
+
+    </tbody>
+</table>
+
+
+

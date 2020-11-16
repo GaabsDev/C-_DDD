@@ -1,0 +1,95 @@
+﻿@model Infra.ViewModel.ProblemViewModel
+
+@{
+    ViewBag.Title = "EditarProblem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="jumbotron">
+    <h3>Editar Problema</h3>
+</div>
+<div class="card">
+    <div class="card-body">
+        @using (Html.BeginForm("EditarProblem", "Assistencia", FormMethod.Post, new { @class = "form-auth-small" }))
+        {
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Email, new { @readonly = true, @class = "form-control", @type = "email", @id = "email", @placeholder = "Email", @Value = Model.Email })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Titulo, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @id = "tituloChamado", @placeholder = "Titulo Chamado", @type = "text", @Value = Model.Titulo })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Funcionario.Username, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Funcionario.Username, new { @readonly = true, @class = "form-control", @type = "text", @placeholder = "Username Solicitante", @id = "username", @Value = Model.Username })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Causa, new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.Causa, new { @class = "form-control", @type = "text", @placeholder = "Causa", @id = "causa", @Value = Model.Causa })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumChamado1, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Chamados, new SelectList(Model.Chamados, "Id", "ConcatDescricao"), @Model.Chamados.FirstOrDefault(x => x.Id == Model.NumChamado1).ConcatDescricao, new { @class = "form-control", @Value = Model.NumChamado1 })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumChamado2, new { @class = "control-label" })
+                            @Html.DropDownListFor(m => m.Chamados, new SelectList(Model.Chamados, "Id", "ConcatDescricao"), @Model.Chamados.FirstOrDefault(x => x.Id == Model.NumChamado2).ConcatDescricao, new { @class = "form-control", @Value = Model.NumChamado2 })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Impactos, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Impactos, new { @class = "form-control", @id = "impactos", @type = "text", @placeholder = "Locais que estão sendo impactados", @rows = "3" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, new { @class = "control-label" })
+                            @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", @id = "descricao", @type = "text", @placeholder = "Descrição Problema", @rows = "3" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Editar Problema</button>
+
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#sistemaId").on("select", function () {
+            alert($(this).val());
+            $("#sId").val($(this).text());
+            alert($("#sId").val($(this).text()));
+        });
+    });
+</script>
